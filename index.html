@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduWarriors | Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Fixed Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2c3e50;
+            padding: 1.2rem 0; /* Reduced from 1.5rem to 1.2rem */
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo i {
+            color: #3498db;
+        }
+        
+        .logo-image {
+            height: 67px; /* 100px × 2/3 = ~67px */
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a.active {
+            color: #3498db;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: #3498db;
+            border-radius: 50%;
+        }
+        
+        /* Main content sections */
+        section {
+            min-height: 100vh;
+            padding: 7rem 2rem 2rem; /* Reduced from 8rem to 7rem */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .section-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            position: relative;
+            padding-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #3498db;
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        /* Home Section Styles */
+        #home {
+            background-color: #ecf0f1;
+            padding: 7rem 2rem 4rem; /* Updated to 7rem top */
+        }
+        
+        .home-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .home-text {
+            flex: 1;
+        }
+        
+        .home-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .home-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .home-headline {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #2c3e50;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .home-tagline {
+            font-size: 1.4rem;
+            color: #5a6c7d;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .what-we-offer {
+            margin: 3rem 0;
+        }
+        
+        .what-we-offer h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .what-we-offer h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #3498db;
+        }
+        
+        .offer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .offer-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .offer-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .offer-icon {
+            background-color: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .offer-details h4 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .offer-details p {
+            color: #5a6c7d;
+            font-size: 1rem;
+        }
+        
+        .consultation-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .consultation-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .consultation-btn i {
+            margin-right: 10px;
+        }
+        
+        /* About Us Section */
+        #about {
+            background-color: #fff;
+            text-align: left;
+        }
+        
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .about-heading {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #2ecc71;
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            margin-bottom: 3rem;
+        }
+        
+        .about-paragraph {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-highlight {
+            background-color: #f8f9fa;
+            border-left: 4px solid #2ecc71;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        
+        .tutor-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 2px solid #eef2f7;
+        }
+        
+        .tutor-image {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #eef2f7;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tutor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .tutor-info {
+            flex: 1;
+        }
+        
+        .tutor-name {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .tutor-title {
+            font-size: 1.1rem;
+            color: #3498db;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .tutor-qualifications {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .tutor-qualifications li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+        
+        .tutor-qualifications li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        
+        /* Sign Up Section */
+        #signup {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        
+        .signup-header {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2c3e50;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .signup-subtitle {
+            font-size: 1.4rem;
+            color: #5a6c7d;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-container {
+            display: flex;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-column {
+            flex: 1;
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .pricing-header {
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #eef2f7;
+        }
+        
+        .pricing-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        
+        .one-on-one .pricing-price {
+            color: #3498db;
+        }
+        
+        .group .pricing-price {
+            color: #9b59b6;
+        }
+        
+        .pricing-period {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-label {
+            display: inline-block;
+            background-color: #f0f7ff;
+            color: #3498db;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        
+        .one-on-one .pricing-label {
+            background-color: #e8f4fc;
+            color: #2980b9;
+        }
+        
+        .group .pricing-label {
+            background-color: #f5eef9;
+            color: #8e44ad;
+        }
+        
+        .pricing-features {
+            flex: 1;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .pricing-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .one-on-one .pricing-features li:before {
+            color: #3498db;
+        }
+        
+        .group .pricing-features li:before {
+            color: #9b59b6;
+        }
+        
+        .signup-btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .signup-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+        }
+        
+        .signup-btn i {
+            margin-right: 10px;
+        }
+        
+        .pricing-note {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* FAQ Section Styles */
+        #faq {
+            background-color: #f0f7ff;
+            text-align: left;
+            padding: 7rem 2rem 4rem;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #eef2f7;
+        }
+        
+        .faq-question i {
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-answer {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #4a5568;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .faq-answer p {
+            margin-bottom: 1rem;
+        }
+        
+        .faq-answer ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #3498db, transparent);
+            margin: 2rem 0;
+        }
+        
+        .faq-note {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        
+        .faq-note i {
+            color: #3498db;
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .home-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .home-headline {
+                font-size: 2.8rem;
+            }
+            
+            .what-we-offer h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .home-text, .home-image {
+                width: 100%;
+            }
+            
+            .tutor-section {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .tutor-image {
+                width: 180px;
+                height: 180px;
+            }
+
+                        
+            .pricing-container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+            
+            .signup-header {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.5rem 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding-top: 9rem; /* Reduced from 10rem to 9rem */
+            }
+            
+            /* Adjust logo size for mobile */
+            .logo-image {
+                height: 47px; /* 70px × 2/3 = ~47px */
+            }
+            
+            nav {
+                padding: 1rem 0; /* Reset to original on mobile */
+            }
+            
+            .home-headline {
+                font-size: 2.4rem;
+            }
+            
+            .home-tagline {
+                font-size: 1.2rem;
+            }
+            
+            #home {
+                padding-top: 9rem; /* Updated for mobile */
+            }
+            
+            #about, #faq {
+                padding-top: 9rem; /* Updated for mobile */
+            }
+            
+            .faq-question {
+                font-size: 1.2rem;
+                padding: 1.2rem;
+            }
+            
+            .faq-answer {
+                padding: 1.2rem;
+            }
+            
+            .about-heading {
+                font-size: 1.9rem;
+            }
+            
+            .about-paragraph {
+                font-size: 1.1rem;
+            }
+            
+            .tutor-image {
+                width: 160px;
+                height: 160px;
+            }
+
+            .signup-header {
+                font-size: 2.2rem;
+            }
+            
+            .pricing-title {
+                font-size: 1.8rem;
+            }
+            
+            .pricing-price {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .logo-image {
+                height: 40px; 
+            }
+            
+            .logo span {
+                font-size: 1.5rem; 
+            }
+            
+            .home-headline {
+                font-size: 2rem;
+            }
+            
+            .offer-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .faq-question {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .about-heading {
+                font-size: 1.7rem;
+            }
+            
+            .tutor-image {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .tutor-name {
+                font-size: 1.6rem;
+            }
+
+            .signup-header {
+                font-size: 1.9rem;
+            }
+            
+            .pricing-column {
+                padding: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="Logo.png" alt="EduWarriors Logo" class="logo-image">
+                <span>EduWarriors</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#signup">Sign Up</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="home-container">
+            <div class="home-text">
+                <h1 class="home-headline">Quality Tutoring Meets Convenience</h1>
+                <p class="home-tagline">Consistent, focused tutoring that supports long-term academic success. All from the comfort of your home.</p>
+                
+                <div class="what-we-offer">
+                    <h3>What We Offer</h3>
+                    <div class="offer-list">
+                        <div class="offer-item">
+                            <div class="offer-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="offer-details">
+                                <h4>Math (Grade 10 - 12)</h4>
+                                <p>Comprehensive math tutoring covering all major topics and exam preparation</p>
+                            </div>
+                        </div>
+                        <div class="offer-item">
+                            <div class="offer-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="offer-details">
+                                <h4>English (Grade 10 - 12)</h4>
+                                <p>Language, literature, and writing skills development for academic excellence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://forms.gle/aRQ8oAk36VgaQ9bC8" class="consultation-btn" target="_blank">
+                    <i class="fas fa-calendar-check"></i> Book a free consultation
+                </a>
+            </div>
+            
+            <div class="home-image">
+                <img src="home.jpg" alt="Online tutoring">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="section-content">
+            <h1 class="section-title">About Us</h1>
+            <p class="section-subtitle">Learn more about the EduWarriors mission and team.</p>
+            
+            <div class="about-container">
+                <div class="about-content">
+                    <h2 class="about-heading">About EduWarriors</h2>
+                    
+                    <p class="about-paragraph">
+                        We believe that quality tutoring should be both effective and accessible. Our goal is to help students build a strong understanding of their subjects, develop confidence in their abilities, and become academic warriors!
+                    </p>
+                    
+                    <p class="about-paragraph">
+                        We offer online tutoring for Grade 10-12 students in Mathematics and English, with options for both personalised one-on-one lessons and structured group practice sessions. This allows us to support students with different learning needs, goals and schedules.
+                    </p>
+                    
+                    <p class="about-paragraph">
+                        By delivering lessons online, we make it easier for students to receive high-quality academic support from the comfort of their own homes - without compromising structure, focus or results.
+                    </p>
+                </div>
+                
+                <div class="tutor-section">
+                    <div class="tutor-image">
+                        <img src="tutor.jpeg" alt="Jessica - EduWarriors Tutor">
+                    </div>
+                    
+                    <div class="tutor-info">
+                        <h2 class="about-heading">About the Tutor</h2>
+                        
+                        <h3 class="tutor-name">Jessica</h3>
+                        <p class="tutor-title">Mathematics & English Tutor</p>
+                        
+                        <p class="about-paragraph">
+                            
+                        </p>
+                        
+                        <ul class="tutor-qualifications">
+                            <li>Third-year Mathematical Science student at UJ</li>
+                            <li>Majoring in Mathematical Statistics & Computer Science</li>
+                            <li>Maintained distinctions in English throughout high school</li>
+                            <li>Achieved 91% for English Home Language in Grade 12</li>
+                            <li>Experienced and dedicated tutor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Section -->
+    <section id="signup">
+        <div class="section-content">
+            <h1 class="section-title">Join EduWarriors</h1>
+            <!-- <p class="section-subtitle">Become part of our learning community today.</p> -->
+            
+            <h2 class="signup-header">Ready to become an academic warrior? Join EduWarriors today</h2>
+            <p class="signup-subtitle">Choose the tutoring option that best fits your learning needs and goals</p>
+            
+            <div class="pricing-container">
+                <!-- One-on-One Sessions Column -->
+                <div class="pricing-column one-on-one">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">One-on-One Sessions</h3>
+                        <div class="pricing-price">R115</div>
+                        <div class="pricing-period">per hour</div>
+                        <div class="pricing-label">Best for personalised support and targeted improvement</div>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Fully personalised lessons tailored to the student's learning style and pace</li>
+                            <li>Focused support on problem areas and challenging topics</li>
+                            <li>Step-by-step explanations to build strong understanding</li>
+                            <li>Help with homework, test preparation, and exam revision</li>
+                            <li>Direct feedback and progress tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://forms.gle/aRQ8oAk36VgaQ9bC8" class="signup-btn" target="_blank">
+                        <i class="fas fa-user-check"></i> Sign Up for One-on-One
+                    </a>
+                </div>
+                
+                <!-- Group Sessions Column -->
+                <div class="pricing-column group">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Group Sessions</h3>
+                        <div class="pricing-price">R250</div>
+                        <div class="pricing-period">per month</div>
+                        <div class="pricing-label">Best for consistent practice and exam preparation</div>
+                    </div>
+                    
+                    <div class="pricing-features">
+                        <ul>
+                            <li>Guided practice using exam-style questions</li>
+                            <li>Reinforcement of key concepts covered in school</li>
+                            <li>Collaborative learning environment with peer support</li>
+                            <li>Regular practice to improve speed, accuracy, and confidence</li>
+                            <li>Structured sessions focused on application rather than theory</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://forms.gle/aRQ8oAk36VgaQ9bC8" class="signup-btn" target="_blank">
+                        <i class="fas fa-users"></i> Sign Up for Group Sessions
+                    </a>
+                </div>
+            </div>
+            
+            <p class="pricing-note">
+                <i class="fas fa-info-circle" style="color: #3498db; margin-right: 8px;"></i>
+                Not sure which option is right for you? <a href="#home" style="color: #3498db; text-decoration: none; font-weight: 600;">Book a free consultation</a> to discuss your specific needs.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-content">
+            <h1 class="section-title">Frequently Asked Questions</h1>
+           <!-- <p class="section-subtitle">Find answers to common questions about EduWarriors.</p> -->
+            
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>1. How do I book a free consultation?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can book a free consultation by clicking the <strong>"Book a Free Consultation"</strong> button on the website and completing the short Google Form. Once the form is submitted, you'll be contacted to schedule a convenient time to discuss academic goals, challenges, and next steps.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>2. How do online tutoring sessions work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All lessons are conducted online in a live, interactive format. Sessions are structured to explain key concepts clearly, encourage questions, and provide guided practice. Depending on the type of session, lessons may be fully personalised or focused on shared practice and reinforcement.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>3. Are lessons one-on-one or group-based?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Both options are available.</p>
+                        <ul>
+                            <li><strong>One-on-one sessions</strong> are fully personalised and tailored to the student's pace, learning style, and specific needs.</li>
+                            <li><strong>Group sessions</strong> focus on guided practice, problem-solving, and exam-style questions. These sessions are less personalised but are ideal for reinforcing concepts in a collaborative setting.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>4. How do you track student progress?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Progress is monitored through ongoing practice, feedback during lessons, and regular evaluation of understanding. Areas of difficulty are identified early, allowing lesson content to be adjusted to support consistent and long-term academic improvement.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>5. How often should a student attend sessions?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most students benefit from <strong>one to two sessions per week</strong>, depending on their academic goals and workload. During the free consultation, a personalised recommendation is made to ensure the most effective learning plan.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 6 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>6. What platform do you use for lessons?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Lessons are primarily conducted using <strong>Google Meet</strong>. However, alternative platforms can be used if a student specifically requests them. All that is required is a stable internet connection and a device with audio and video capabilities.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 7 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>7. Can sessions be rescheduled?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. Sessions may be rescheduled with prior notice. Flexibility is offered to accommodate school commitments, examinations, and unforeseen circumstances, provided sufficient notice is given.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 8 -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>8. How much does tutoring cost?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>One-on-one tutoring:</strong> R115 per hour</li>
+                            <li><strong>Group sessions:</strong> R250 per month</li>
+                        </ul>
+                        <p>Full details, including recommendations on which option may be most suitable, are discussed during the free consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-note">
+                    <p><i class="fas fa-info-circle"></i> Still have questions? Feel free to <a href="#home" style="color: #3498db; text-decoration: none; font-weight: 600;">book a free consultation</a> to discuss your specific needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text"> EduWarriors. Empowering learners everywhere.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for navigation highlighting and smooth scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section');
+            
+            // Function to update active navigation link
+            function updateActiveLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Add smooth scrolling to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Update active link on scroll
+            window.addEventListener('scroll', updateActiveLink);
+            
+            // Initialize active link on page load
+            updateActiveLink();
+            
+            // Optional: Add a subtle effect to the nav bar on scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.padding = '1rem 0'; /* Reduced for smaller logo */
+                    nav.style.boxShadow = '0 6px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.padding = '1.2rem 0'; /* Reduced for smaller logo */
+                    nav.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                }
+            });
+            
+            // FAQ Accordion Functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle active class on answer
+                    answer.classList.toggle('active');
+                    
+                    // Rotate icon
+                    if (answer.classList.contains('active')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
